@@ -57,8 +57,8 @@ def error_more_than_one_percent():
     c = db.cursor()
     c.execute("select TO_CHAR(date_wise_failed_request.date,'Mon DD, YYYY')" +
               " as dateStr, " +
-              "ROUND((date_wise_failed_request.failures * 100/" +
-              "date_wise_request.count),2)" +
+              "ROUND((CAST(date_wise_failed_request.failures AS NUMERIC) * 100/" +
+              "CAST(date_wise_request.count AS NUMERIC)),2)" +
               " as failure_rate from date_wise_request " +
               "join date_wise_failed_request on " +
               "date_wise_failed_request.date " +
