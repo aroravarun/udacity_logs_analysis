@@ -10,7 +10,7 @@ It exposes 3 functionalities:
 Setup:
 
 Virtual Machine Setup
-You need to setup a vagrant virtual machine to set it up.
+You need to setup a vagrant iirtual machine to set it up.
 The steps to setup it up are as follows:
 1.) Download the latest Virtual Box which is compatible with vagrant from the link:
 https://www.virtualbox.org/wiki/Download_Old_Builds_5_1
@@ -40,4 +40,4 @@ https://d17h27t6h515a5.cloudfront.net/topher/2016/August/57b5f748_newsdata/newsd
 Project Execution:
 
 1.) Execute the following command:
-python assignment.py
+python news_logs_analysis/assignment.py
