@@ -37,16 +37,16 @@ def error_more_than_one_percent():
   """On which days did more than 1% of requests lead to errors"""
   db = psycopg2.connect(database=DBNAME)
   c = db.cursor()
-  c.execute("select date_wise_failed_request.date, date_wise_failed_request.failures, date_wise_request.count from date_wise_request join date_wise_failed_request on date_wise_failed_request.date = date_wise_request.date")
+  c.execute("select TO_CHAR(date_wise_failed_request.date,'Mon DD, YYYY') as dateStr, ROUND((date_wise_failed_request.failures * 100/date_wise_request.count),2) as failure_rate from date_wise_request join date_wise_failed_request on date_wise_failed_request.date = date_wise_request.date")
   # print"The days with error rate more than 1 percent:"
   for row in c:
     date = row[0]
-    failures = row[1]
-    views = row[2]
+    failure_rate = row[1]
+    # views = row[2]
     # print("{} views {} failures".format(views, failures))
-    errorPercent = round((float(failures)/views)*100, 2);
-    if(errorPercent > 1):
-      print("{} - {} %".format(datetime.datetime.strptime(str(date),sqlDateFormat).strftime(formatStr) , errorPercent))
+    # errorPercent = round((float(failures)/views)*100, 2);
+    if(failure_rate > 1):
+      print("{} - {} %".format(date , failure_rate))
   db.close()
 
 if __name__ == '__main__':
