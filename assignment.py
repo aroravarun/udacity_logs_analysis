@@ -1,4 +1,4 @@
-# Database code for the DB Forum, full solution!
+#!/usr/bin/env python
 
 import psycopg2,datetime
 
